@@ -10,6 +10,24 @@ This `CMake` module allows you to download the beta release of `tolc` to then ge
 
 The only file that is needed is the `tolc.cmake` module located in the root of this repository.
 
+You could also download it automatically via `CMake`:
+
+```cmake
+# Download automatically, you can also just copy the tolc.cmake file
+if(NOT EXISTS "${CMAKE_BINARY_DIR}/tolc.cmake")
+  message(STATUS "Downloading tolc.cmake from https://github.com/Tolc-Software/bootstrap-tolc-cmake")
+  file(
+    DOWNLOAD
+      "https://github.com/Tolc-Software/bootstrap-tolc-cmake/raw/main/tolc.cmake"
+      "${CMAKE_BINARY_DIR}/tolc.cmake"
+    TLS_VERIFY
+      ON
+  )
+endif()
+
+include(${CMAKE_BINARY_DIR}/tolc.cmake)
+```
+
 ## Usage ##
 
 `tolc.cmake` only provides the function `get_tolc()` which downloads and finds the latest release of `tolc`.
@@ -21,10 +39,13 @@ cmake_minimum_required(VERSION 3.11)
 
 project(bootstrap-tolc-cmake)
 
+# Some library to generate bindings from
 add_library(bootstrap src/Boot/bootstrap.cpp)
 target_include_directories(bootstrap PUBLIC include)
 
+# Assumes tolc.cmake is next to this file or in CMAKE_MODULES_PATH
 include(tolc.cmake)
+# Download and uses find_package to locate tolc
 get_tolc()
 
 # This function comes from the tolc package itself
@@ -38,4 +59,3 @@ tolc_create_translation(
   OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/python-bindings
 )
 ```
-
