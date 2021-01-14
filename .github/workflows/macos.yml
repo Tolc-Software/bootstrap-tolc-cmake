@@ -20,7 +20,7 @@ jobs:
     - name: Configure test project
       run: |
         cd tests
-        cmake -S. -Bbuild -DCMAKE_CXX_COMPILER="/usr/local/opt/llvm/bin/clang++" -DCMAKE_C_COMPILER="/usr/local/opt/llvm/bin/clang" -DCMAKE_BUILD_TYPE="Release"
+        cmake -S. -Bbuild -DCMAKE_CXX_COMPILER="/usr/local/opt/llvm/bin/clang++" -DCMAKE_C_COMPILER="/usr/local/opt/llvm/bin/clang" -DCMAKE_BUILD_TYPE="Release" -DPYTHON_EXECUTABLE=$(which python3)
 
     - name: Build
       run: cmake --build tests/build -j4
