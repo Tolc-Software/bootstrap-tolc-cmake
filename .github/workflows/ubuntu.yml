@@ -21,7 +21,7 @@ jobs:
         cmake -S. -Bbuild -DCMAKE_CXX_COMPILER="clang++" -DCMAKE_C_COMPILER="clang" -DCMAKE_BUILD_TYPE="Release"
 
     - name: Build
-      run: cmake --build build -j4
+      run: cmake --build tests/build -j4
 
     - name: Setup go
       if: github.ref == 'refs/heads/main'
@@ -43,7 +43,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
-        cd ..
         go get -v github.com/github-release/github-release
         echo "Checking if a new release is needed"
         github-release release --user Tolc-Software --repo bootstrap-tolc-cmake --tag main-release --name "Main release" --description "This release gets updated with each commit to main" || true

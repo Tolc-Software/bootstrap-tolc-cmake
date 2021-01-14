@@ -23,4 +23,4 @@ jobs:
         cmake -S. -Bbuild -DCMAKE_CXX_COMPILER="/usr/local/opt/llvm/bin/clang++" -DCMAKE_C_COMPILER="/usr/local/opt/llvm/bin/clang" -DCMAKE_BUILD_TYPE="Release"
 
     - name: Build
-      run: cmake --build build -j4
+      run: cmake --build tests/build -j4
