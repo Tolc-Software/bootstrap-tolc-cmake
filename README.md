@@ -49,7 +49,7 @@ include(tolc.cmake)
 get_tolc()
 
 # This function comes from the tolc package itself
-# Creates the target bootstrap_python that can be imported with python
+# Creates the target bootstrap_python that can be imported and used from python
 tolc_create_translation(
   # Target to translate from
   TARGET bootstrap
