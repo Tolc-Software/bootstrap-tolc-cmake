@@ -8,7 +8,7 @@ add_library(bootstrap src/Boot/bootstrap.cpp)
 target_include_directories(bootstrap PUBLIC include)
 
 get_filename_component(rootDir ${PROJECT_SOURCE_DIR} DIRECTORY)
-include(${rootDir}/tolc.cmake)
+add_subdirectory(${rootDir} bootstrap)
 get_tolc()
 
 # Creates the target bootstrap_python that can be imported with python
