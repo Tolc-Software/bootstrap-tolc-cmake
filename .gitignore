@@ -14,5 +14,6 @@
 
 # Directories
 !.github
+!cmake
 !tests
 !tools
