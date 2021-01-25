@@ -8,9 +8,12 @@
 # Except these
 # Files
 !.gitignore
-!tolc.cmake
+!CMakeLists.txt
 !README.md
+!tolc.cmake
 
 # Directories
 !.github
+!cmake
 !tests
+!tools

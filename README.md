@@ -8,34 +8,29 @@ This `CMake` module allows you to download the beta release of `tolc` to then ge
 
 ## Installation ##
 
-The only file that is needed is the `tolc.cmake` module located in the root of this repository.
+Clone and use `add_subdirectory(path/to/bootstrap)` within your project.
 
-You could also download it automatically via `CMake`:
+You can also download it automatically via `CMake`:
 
 ```cmake
-# Download automatically, you can also just copy the tolc.cmake file
-if(NOT EXISTS "${CMAKE_BINARY_DIR}/tolc.cmake")
-  message(STATUS "Downloading tolc.cmake from https://github.com/Tolc-Software/bootstrap-tolc-cmake")
-  file(
-    DOWNLOAD
-      "https://github.com/Tolc-Software/bootstrap-tolc-cmake/raw/main/tolc.cmake"
-      "${CMAKE_BINARY_DIR}/tolc.cmake"
-    TLS_VERIFY
-      ON
-  )
-endif()
+include(FetchContent)
+FetchContent_Declare(
+  tolc_bootstrap
+  GIT_REPOSITORY https://github.com/Tolc-Software/bootstrap-tolc-cmake
+  GIT_TAG        main
+)
 
-include(${CMAKE_BINARY_DIR}/tolc.cmake)
+FetchContent_MakeAvailable(tolc_bootstrap)
 ```
 
 ## Usage ##
 
-`tolc.cmake` only provides the function `get_tolc()` which downloads and finds the latest release of `tolc`.
+The bootstrap script only provides the function `get_tolc()` which downloads the latest release of `tolc`.
 
 A full example:
 
 ```cmake
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.15)
 
 project(bootstrap-tolc-cmake)
 
@@ -43,8 +38,14 @@ project(bootstrap-tolc-cmake)
 add_library(bootstrap src/Boot/bootstrap.cpp)
 target_include_directories(bootstrap PUBLIC include)
 
-# Assumes tolc.cmake is next to this file or in CMAKE_MODULES_PATH
-include(tolc.cmake)
+include(FetchContent)
+FetchContent_Declare(
+  tolc_bootstrap
+  GIT_REPOSITORY https://github.com/Tolc-Software/bootstrap-tolc-cmake
+  GIT_TAG        main
+)
+
+FetchContent_MakeAvailable(tolc_bootstrap)
 # Download and uses find_package to locate tolc
 get_tolc()
 
