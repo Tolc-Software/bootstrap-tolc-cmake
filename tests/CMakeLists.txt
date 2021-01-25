@@ -1,6 +1,6 @@
 # This is a test for the bootstrap script in this repository.
 # It is NOT meant to be used by consumers
-cmake_minimum_required(VERSION 3.11)
+cmake_minimum_required(VERSION 3.15)
 
 project(bootstrap-tolc-cmake)
 
