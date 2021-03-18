@@ -23,6 +23,8 @@ jobs:
         python-version: '3.8'
 
     - name: Configure test project
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       run: |
         cd tests
         cmake -S. -Bbuild -DCMAKE_CXX_COMPILER="/usr/local/opt/llvm/bin/clang++" -DCMAKE_C_COMPILER="/usr/local/opt/llvm/bin/clang" -DCMAKE_BUILD_TYPE="Release" -DPYTHON_EXECUTABLE=$(which python3)

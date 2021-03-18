@@ -24,6 +24,8 @@ jobs:
         python-version: '3.8'
 
     - name: Configure
+      env:
+        GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       shell: cmd
       run: |
         call "%VCVARS%"
