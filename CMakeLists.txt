@@ -8,7 +8,7 @@ set(tolc_bootstrap_dir
 
 # Internal function
 function(_tolc_fetch_release content_name)
-  set(supportedPlatforms "Linux;Darwin")
+  set(supportedPlatforms "Linux;Darwin;Windows")
   if(${CMAKE_HOST_SYSTEM_NAME} IN_LIST supportedPlatforms)
     # All fetchcontent stuff uses lowercase names
     string(TOLOWER "${content_name}" content)

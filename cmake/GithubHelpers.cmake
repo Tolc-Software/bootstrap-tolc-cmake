@@ -31,7 +31,12 @@ function(_tolc_fetch_asset_from_github)
     message(FATAL_ERROR "Something went wrong setting up a virtualenv. Exit code: ${result}")
   endif()
 
-  set(virtualenv_python ${virtualenv}/bin/python)
+  if(${CMAKE_HOST_SYSTEM_NAME} STREQUAL Windows)
+    set(virtualenv_python ${virtualenv}/Scripts/python.exe)
+  else()
+    set(virtualenv_python ${virtualenv}/bin/python)
+  endif()
+
   set(python_pip_args -m pip install -r ${ARG_CODE_DIR}/requirements.txt)
   execute_process(
     COMMAND ${virtualenv_python} ${python_pip_args}
