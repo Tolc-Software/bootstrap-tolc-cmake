@@ -8,12 +8,16 @@ set(tolc_bootstrap_dir
 
 # Internal function
 function(_tolc_fetch_release content_name)
-  set(supportedPlatforms "Linux;Darwin")
+  set(supportedPlatforms "Linux;Darwin;Windows")
   if(${CMAKE_HOST_SYSTEM_NAME} IN_LIST supportedPlatforms)
     # All fetchcontent stuff uses lowercase names
     string(TOLOWER "${content_name}" content)
 
     include(${tolc_bootstrap_dir}/cmake/GithubHelpers.cmake)
+	set(github_token_argument "")
+	if(DEFINED ENV{GITHUB_AUTH_TOKEN})
+      set(github_token_argument "GITHUB_TOKEN;$ENV{GITHUB_AUTH_TOKEN}")
+    endif()
     _tolc_fetch_asset_from_github(
       FETCH_VARIABLE
         ${content}
@@ -26,7 +30,8 @@ function(_tolc_fetch_release content_name)
       ASSET_NAME
         tolc-${CMAKE_HOST_SYSTEM_NAME}-beta.tar.gz
       CODE_DIR
-        ${tolc_bootstrap_dir}/tools)
+        ${tolc_bootstrap_dir}/tools
+	  ${github_token_argument})
     set(${content}_SOURCE_DIR ${${content}_SOURCE_DIR} PARENT_SCOPE)
   else()
     string(REPLACE ";" ", " formatedPlatforms ${supportedPlatforms})
