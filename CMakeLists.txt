@@ -50,4 +50,5 @@ macro(get_tolc)
     ${tolc_ROOT}
     REQUIRED
     NO_DEFAULT_PATH)
+  message(STATUS "Signup to influence the development of tolc: https://srydell.github.io/tolc/signup/")
 endmacro()

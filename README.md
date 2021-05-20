@@ -2,6 +2,8 @@
 
 ![Ubuntu](https://github.com/Tolc-Software/bootstrap-tolc-cmake/workflows/Ubuntu/badge.svg) ![MacOS](https://github.com/Tolc-Software/bootstrap-tolc-cmake/workflows/MacOS/badge.svg)
 
+[Signup to influence the development of `tolc`](https://srydell.github.io/tolc/signup/)
+
 `CMake` downloader for the C++ language bindings generator `tolc`.
 
 This `CMake` module allows you to download the beta release of `tolc` to then generate bindings from headers and `CMake` targets.
