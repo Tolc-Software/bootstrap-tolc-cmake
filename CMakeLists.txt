@@ -1,3 +1,5 @@
+cmake_minimum_required(VERSION 3.15)
+
 project(BootstrapTolc VERSION 0.1)
 
 set(tolc_bootstrap_dir
