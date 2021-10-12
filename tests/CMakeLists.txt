@@ -18,8 +18,7 @@ tolc_create_translation(
   # Language to target
   LANGUAGE python
   # Where to put the bindings
-  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/python-bindings
-)
+  OUTPUT ${CMAKE_CURRENT_BINARY_DIR}/python-bindings)
 
 # Lets try to use it!
 find_package(Python3 REQUIRED)
