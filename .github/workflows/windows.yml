@@ -12,8 +12,6 @@ jobs:
   build:
 
     runs-on: windows-latest
-    env:
-      VCVARS: C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise\VC\Auxiliary\Build\vcvars64.bat
 
     steps:
     - uses: actions/checkout@v2
@@ -28,12 +26,10 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.ACCESS_TOKEN }}
       shell: cmd
       run: |
-        call "%VCVARS%"
         cd tests
-        cmake -S. -Bbuild -DCMAKE_CXX_COMPILER=clang-cl -DCMAKE_C_COMPILER=clang-cl -DCMAKE_BUILD_TYPE=Release
+        cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release
 
     - name: Build
       run: |
-        call "%VCVARS%"
         cd tests
-        cmake --build tests/build -j4
+        cmake --build build -j4 --config Release
