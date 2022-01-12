@@ -1,3 +1,5 @@
+**ARCHIVED** No longer needed after simplifying the download process.
+
 # Bootstrap `tolc` with `CMake` #
 
 ![Ubuntu](https://github.com/Tolc-Software/bootstrap-tolc-cmake/workflows/Ubuntu/badge.svg) ![MacOS](https://github.com/Tolc-Software/bootstrap-tolc-cmake/workflows/MacOS/badge.svg)
